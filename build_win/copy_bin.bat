@@ -20,7 +20,7 @@ IF [%3]==[.dll] (
 	SET TargetFolder=%TargetRoot%\%Target%\bin
 )
 
-mkdir %TargetFolder%
+mkdir -p %TargetFolder%
 
 echo ----------------------------------------------
 echo Copying %2%3

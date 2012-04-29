@@ -96,7 +96,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions>/NODEFAULTLIB:libcmtd.lib %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>util-d.lib;util_thread-d.lib;mdump-d.lib;ipc_pipe-d.lib;util_bootloader-d.lib;desura_nongpl-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>util-d.lib;util_thread-d.lib;mdump-d.lib;ipc_pipe-d.lib;util_bootloader-d.lib;desura_nongpl-d.lib;umcf-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalManifestDependencies>%(AdditionalManifestDependencies)</AdditionalManifestDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -189,6 +189,11 @@
   <ItemGroup>
     <ClCompile Include="code\Log.cpp" />
     <ClCompile Include="code\DesuraMain.cpp" />
+    <ClCompile Include="code\offical\DesuraProgress.cpp" />
+    <ClCompile Include="code\offical\InstallFiles.cpp" />
+    <ClCompile Include="code\offical\UMcfEx.cpp" />
+    <ClCompile Include="code\offical\UpdateFunctionsNonGpl.cpp" />
+    <ClCompile Include="code\offical\UpdateMFCForm.cpp" />
     <ClCompile Include="code\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -209,6 +214,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="code\offical\DesuraProgress.h" />
+    <ClInclude Include="code\offical\UMcfEx.h" />
+    <ClInclude Include="code\offical\UpdateMFCForm.h" />
     <ClInclude Include="code\UpdateFunctions.h" />
     <ClInclude Include="code\AppUpdateInstall.h" />
   </ItemGroup>

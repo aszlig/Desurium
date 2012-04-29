@@ -135,6 +135,9 @@
     <Filter Include="Source Files\Browser\Cef Host\IPC">
       <UniqueIdentifier>{0c9c3c43-9554-4f2c-a40a-11e896532104}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\offical">
+      <UniqueIdentifier>{b18dd9ca-5086-4258-88b6-dab48f35c8d1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\DesuraServiceError.h">
@@ -813,6 +816,9 @@
     </ClCompile>
     <ClCompile Include="code\NewAccountDialog.cpp">
       <Filter>Source Files\Dialogs\new account</Filter>
+    </ClCompile>
+    <ClCompile Include="code\offical\Arma2CDKey.cpp">
+      <Filter>Source Files\offical</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

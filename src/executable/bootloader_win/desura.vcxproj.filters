@@ -19,6 +19,9 @@
     <Filter Include="Source Files\desura">
       <UniqueIdentifier>{37d8137d-c12b-4703-8d20-8a2f40f1e213}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\offical">
+      <UniqueIdentifier>{f311f3d2-e0fc-4cdc-beef-03e625ecd1ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\stdafx.cpp">
@@ -39,6 +42,21 @@
     <ClCompile Include="code\Log.cpp">
       <Filter>Source Files\desura</Filter>
     </ClCompile>
+    <ClCompile Include="code\offical\DesuraProgress.cpp">
+      <Filter>Source Files\offical</Filter>
+    </ClCompile>
+    <ClCompile Include="code\offical\InstallFiles.cpp">
+      <Filter>Source Files\offical</Filter>
+    </ClCompile>
+    <ClCompile Include="code\offical\UMcfEx.cpp">
+      <Filter>Source Files\offical</Filter>
+    </ClCompile>
+    <ClCompile Include="code\offical\UpdateFunctionsNonGpl.cpp">
+      <Filter>Source Files\offical</Filter>
+    </ClCompile>
+    <ClCompile Include="code\offical\UpdateMFCForm.cpp">
+      <Filter>Source Files\offical</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\AppUpdateInstall.h">
@@ -46,6 +64,15 @@
     </ClInclude>
     <ClInclude Include="code\UpdateFunctions.h">
       <Filter>Source Files\desura</Filter>
+    </ClInclude>
+    <ClInclude Include="code\offical\DesuraProgress.h">
+      <Filter>Source Files\offical</Filter>
+    </ClInclude>
+    <ClInclude Include="code\offical\UMcfEx.h">
+      <Filter>Source Files\offical</Filter>
+    </ClInclude>
+    <ClInclude Include="code\offical\UpdateMFCForm.h">
+      <Filter>Source Files\offical</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

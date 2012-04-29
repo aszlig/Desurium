@@ -326,6 +326,7 @@
     <ClCompile Include="code\ItemTabPage.cpp" />
     <ClCompile Include="code\ModWizardFinPage.cpp" />
     <ClCompile Include="code\NewAccountDialog.cpp" />
+    <ClCompile Include="code\offical\Arma2CDKey.cpp" />
     <ClCompile Include="code\PreloadPage.cpp" />
     <ClCompile Include="code\UICoreMain.cpp" />
     <ClCompile Include="code\MainFormCustomFrame.cpp" />
