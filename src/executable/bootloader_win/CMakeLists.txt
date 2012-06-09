@@ -6,7 +6,11 @@ include_directories(
   ${TINYXML_INCLUDE_DIR}
 )
 
-file(GLOB Sources code/*.cpp )
+configure_file(RES/desura_exe.rc ${RC_DIR}/desura_exe.rc @ONLY)
+file(GLOB Sources
+  code/*.cpp
+  ${RC_DIR}/desura_exe.rc
+)
 
 add_definitions(-D_WINDOWS
                 -DGAMECORE_LOG
