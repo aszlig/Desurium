@@ -14,7 +14,6 @@
 #endif
 
 #include "ChromiumBrowser.h"
-#include "include/cef.h"
 #include "JavaScriptExtender.h"
 #include "SchemeExtender.h"
 
@@ -56,18 +55,20 @@ extern "C"
 
 	DLLINTERFACE bool CEF_Init(bool threaded, const char* cachePath, const char* logPath, const char* userAgent)
 	{
+        CefMainArgs main_args;
 		CefSettings settings;
 
-
-		cef_string_copy(cachePath, strlen(cachePath), &settings.cache_path);
-		cef_string_copy(userAgent, strlen(userAgent), &settings.user_agent);
+		cef_string_from_ascii(cachePath, strlen(cachePath), &settings.cache_path);
+		cef_string_from_ascii(userAgent, strlen(userAgent), &settings.user_agent);
 
 		settings.multi_threaded_message_loop = threaded;
 
-
-		if (!CefInitialize(settings))
+		if (!CefInitialize(main_args, settings, NULL))
 			return false;
 
+/*
+ * FIXME: Didn't look up if there's a nice method for that in CEF3, but let's
+ *        see as we proceed.
 #if defined(_WIN32)
 		CefRegisterFlashPlugin("gcswf32.dll");
 #else
@@ -77,6 +78,7 @@ extern "C"
 		CefRegisterFlashPlugin("libdesura_flashwrapper_32.so");
 	#endif
 #endif
+*/
 
 		return true;
 	}
@@ -170,10 +172,11 @@ public:
 
 		switch (m_Action)
 		{
-			case A_ZOOMIN:		frame->ZoomIn();	break;
-			case A_ZOOMOUT:		frame->ZoomOut();	break;
-			case A_ZOOMNORMAL:	frame->ZoomNormal(); break;
-			case A_PRINT:		frame->Print();		break;
+            // FIXME: This was patched into CEF:
+			//case A_ZOOMIN:		frame->ZoomIn();	break;
+			//case A_ZOOMOUT:		frame->ZoomOut();	break;
+			//case A_ZOOMNORMAL:	frame->ZoomNormal(); break;
+			//case A_PRINT:		frame->Print();		break;
 			case A_VIEWSOURCE:	frame->ViewSource(); break;
 			case A_UNDO:		frame->Undo();		break;
 			case A_REDO:		frame->Redo();		break;
@@ -301,7 +304,7 @@ void ChromiumBrowser::initCallback(const std::string& defaultUrl)
 	CefWindowInfo winInfo;
 	winInfo.SetAsChild(GTK_WIDGET(m_hFormHandle));
 
-	m_pBrowser = CefBrowser::CreateBrowserSync(winInfo, m_rEventHandler, defaultUrl.c_str(), getBrowserDefaults());
+	m_pBrowser = CefBrowserHost::CreateBrowserSync(winInfo, m_rEventHandler, defaultUrl.c_str(), getBrowserDefaults());
 	g_signal_connect(GTK_WIDGET(m_hFormHandle), "button-press-event", G_CALLBACK(gtkFocus), this);
 	gtk_widget_show_all(GTK_WIDGET(m_hFormHandle));
 }
@@ -442,7 +445,7 @@ void ChromiumBrowser::executeJScript(const char* code, const char* scripturl, in
 void ChromiumBrowser::onFocus()
 {
 	if (m_pBrowser)
-		m_pBrowser->SetFocus(true);
+		m_pBrowser->GetHost()->SetFocus(true);
 }
 
 #if defined(_WIN32)
@@ -513,32 +516,40 @@ void ChromiumBrowser::setBrowser(CefBrowser* browser)
 
 void ChromiumBrowser::showInspector()
 {
+    /* FIXME!
 	if (m_pBrowser)
 		m_pBrowser->ShowDevTools();
+    */
 }
 
 void ChromiumBrowser::hideInspector()
 {
+    /* FIXME!
 	if (m_pBrowser)
 		m_pBrowser->CloseDevTools();
+    */
 }
 
 void ChromiumBrowser::inspectElement(int x, int y)
 {
+    /* FIXME!
 	if (m_pBrowser)
 		m_pBrowser->InspectElement(x, y);
+    */
 }
 
 void ChromiumBrowser::scroll(int x, int y, int delta, unsigned int flags)
 {
+    /* FIXME!
 	if (m_pBrowser)
 		m_pBrowser->MouseWheelEvent(x, y, delta, flags);
+    */
 }
 
 int* ChromiumBrowser::getBrowserHandle()
 {
 	if (m_pBrowser)
-		return (int*)m_pBrowser->GetWindowHandle();
+		return (int*)m_pBrowser->GetHost()->GetWindowHandle();
 
 	return 0;
 }

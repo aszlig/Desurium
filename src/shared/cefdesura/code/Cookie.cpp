@@ -10,7 +10,7 @@
 ////////////////////////////////////////////////////////////////////////////
 
 #include "ChromiumBrowserI.h"
-#include "include/cef.h"
+#include "include/cef_browser.h"
 
 class Cookie : public ChromiumDLL::CookieI
 {

@@ -16,7 +16,17 @@
 #endif
 
 #include "ChromiumBrowserI.h"
-#include "include/cef.h"
+#include "include/cef_app.h"
+#include "include/cef_browser.h"
+#include "include/cef_client.h"
+/*
+#include "include/cef_display_handler.h"
+#include "include/cef_keyboard_handler.h"
+#include "include/cef_load_handler.h"
+*/
+#include "include/cef_task.h"
+#include "include/cef_v8.h"
+#include "cef_refcount_wrapper.h"
 
 class ChromiumBrowserEvents;
 

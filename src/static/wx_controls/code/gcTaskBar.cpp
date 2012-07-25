@@ -306,7 +306,7 @@ bool gcTaskBarIcon::ShowBalloon(const wxString& title, const wxString& text, uns
 		notify_notification_new(
 			title.wx_str(),
 			text.wx_str(),
-			icon);
+			icon, NULL);
 	
 	notify_notification_show(notification, NULL);
 	

@@ -16,7 +16,7 @@
 #endif
 
 #include "ChromiumBrowserI.h"
-#include "include/cef.h"
+#include "include/cef_browser.h"
 
 class PostElement : public ChromiumDLL::PostElementI
 {

@@ -103,9 +103,9 @@ if(NOT WIN32)
 endif()
 find_package(BZip2 ${REQUIRED_IF_OPTION})
 
-if(NOT WITH_ARES)
+#if(NOT WITH_ARES)
   find_package(CURL ${REQUIRED_IF_OPTION})
-endif()
+#endif()
 
 # we patch google breakpad, so we will build it on our own
 # patching is only needed on windows, so we can use system breakpad on other OS

@@ -16,12 +16,13 @@
 #endif
 
 #include "ChromiumBrowserI.h"
-#include "include/cef.h"
+#include "include/cef_browser.h"
+#include "include/cef_context_menu_handler.h"
 
 class ChromiumMenuItem : public ChromiumDLL::ChromiumMenuItemI
 {
 public:
-	ChromiumMenuItem(CefMenuHandler::MenuItem item);
+	ChromiumMenuItem(CefContextMenuHandler::MenuItem item);
 
 	virtual int getAction();
 	virtual int getType();
@@ -31,7 +32,7 @@ public:
 	virtual bool isChecked();
 
 private:
-	CefMenuHandler::MenuItem m_MenuItem;
+	CefContextMenuHandler::MenuItem m_MenuItem;
 };
 
 
@@ -47,7 +48,7 @@ private:
 class ChromiumMenuInfo : public ChromiumDLL::ChromiumMenuInfoI
 {
 public:
-	ChromiumMenuInfo(CefMenuHandler::MenuInfo info, MenuHandle_t hwnd);
+	ChromiumMenuInfo(CefContextMenuHandler::MenuInfo info, MenuHandle_t hwnd);
 
 	virtual ChromiumDLL::ChromiumMenuInfoI::TypeFlags getTypeFlags();
 	virtual ChromiumDLL::ChromiumMenuInfoI::EditFlags getEditFlags();
@@ -69,7 +70,7 @@ public:
 
 private:
 	std::vector<ChromiumMenuItem> m_vMenuItems;
-	CefMenuHandler::MenuInfo m_MenuInfo;
+	CefContextMenuHandler::MenuInfo m_MenuInfo;
 	MenuHandle_t m_Hwnd;
 };
 

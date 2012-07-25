@@ -43,7 +43,7 @@ bool JavaScriptExtender::Execute(const CefString& name, CefRefPtr<CefV8Value> ob
 
 	ChromiumDLL::JavaScriptFunctionArgs args;
 
-	args.function = name.c_str();
+	args.function = name.ToString().c_str();
 	args.argc = argc;
 	args.argv = argv;
 	args.object = new JavaScriptObject(object);

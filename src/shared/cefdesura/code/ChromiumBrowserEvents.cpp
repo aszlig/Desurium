@@ -168,7 +168,7 @@ bool LoadHandler::OnLoadError(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame>
 /// RequestHandler
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-bool RequestHandler::OnBeforeBrowse(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefRequest> request, NavType navType, bool isRedirect)
+bool RequestHandler::OnBeforeResourceLoad(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefRequest> request)
 {
 	if (!GetCallback())
 		return false;
@@ -199,12 +199,12 @@ bool DisplayHandler::OnConsoleMessage(CefRefPtr<CefBrowser> browser, const CefSt
 /// KeyboardHandler
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-bool KeyboardHandler::OnKeyEvent(CefRefPtr<CefBrowser> browser, KeyEventType type, int code, int modifiers, bool isSystemKey)
+bool KeyboardHandler::OnKeyEvent(CefRefPtr<CefBrowser> browser, const CefKeyEvent& event, CefEventHandle os_event)
 {
 	if (!GetCallback())
 		return false;
 
-	return GetCallback()->onKeyEvent((ChromiumDLL::KeyEventType)type, code, modifiers, isSystemKey);
+	return GetCallback()->onKeyEvent(event.type, event.native_key_code, event.modifiers, event.is_system_key);
 }
 
 
@@ -260,11 +260,11 @@ bool JSDialogHandler::OnJSPrompt(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFra
 /// JSBindingHandler
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-void JSBindingHandler::OnJSBinding(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefV8Value> object)
+void JSBindingHandler::OnContextCreated(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefV8Context> context)
 {
-	setContext(CefV8Context::GetCurrentContext());
+	setContext(context);
 
-	JavaScriptObject obj(object);
+	JavaScriptObject obj(context->GetGlobal());
 
 	if (GetCallback())
 		GetCallback()->HandleJSBinding(&obj, GetJSFactory());

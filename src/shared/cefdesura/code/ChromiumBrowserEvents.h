@@ -15,7 +15,13 @@
 #pragma once
 #endif
 
-#include "include/cef.h"
+#include "include/cef_browser.h"
+#include "include/cef_client.h"
+#include "include/cef_display_handler.h"
+#include "include/cef_keyboard_handler.h"
+#include "include/cef_load_handler.h"
+#include "include/cef_context_menu_handler.h"
+#include "include/cef_v8.h"
 #include "ChromiumBrowserI.h"
 
 class ChromiumBrowser;
@@ -63,7 +69,7 @@ public:
 class RequestHandler : public CefRequestHandler, public virtual ChromiumEventInfoI
 {
 public:
-	virtual bool OnBeforeBrowse(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefRequest> request, NavType navType, bool isRedirect);
+	virtual bool OnBeforeResourceLoad(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefRequest> request);
 };
 
 
@@ -85,14 +91,14 @@ public:
 class KeyboardHandler : public CefKeyboardHandler, public virtual ChromiumEventInfoI
 {
 public:
-	virtual bool OnKeyEvent(CefRefPtr<CefBrowser> browser, KeyEventType type, int code, int modifiers, bool isSystemKey);
+	virtual bool OnKeyEvent(CefRefPtr<CefBrowser> browser, const CefKeyEvent& event, CefEventHandle os_event);
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /// MenuHandler
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-class MenuHandler : public CefMenuHandler, public virtual ChromiumEventInfoI
+class MenuHandler : public CefContextMenuHandler, public virtual ChromiumEventInfoI
 {
 public:
 	virtual bool OnBeforeMenu(CefRefPtr<CefBrowser> browser, const MenuInfo& menuInfo);
@@ -115,22 +121,11 @@ public:
 /// JSBindingHandler
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-class JSBindingHandler : public CefJSBindingHandler, public virtual ChromiumEventInfoI
+class JSBindingHandler : public CefV8Handler, public virtual ChromiumEventInfoI
 {
 public:
-	virtual void OnJSBinding(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefV8Value> object);
+	virtual void OnContextCreated(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefV8Context> context);
 };
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-/// WinEventHandler
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-class WinEventHandler : public CefWinEventHandler, public virtual ChromiumEventInfoI
-{
-public:
-	virtual void OnWndProc(CefRefPtr<CefBrowser> browser, int message, int wparam, int lparam);
-};
-
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /// ChromiumBrowserEvents
@@ -147,7 +142,6 @@ class ChromiumBrowserEvents :
 	, public MenuHandler
 	, public JSDialogHandler
 	, public JSBindingHandler
-	, public WinEventHandler
 {
 public:
 	ChromiumBrowserEvents(ChromiumBrowser* pParent);
@@ -165,10 +159,9 @@ public:
 	virtual CefRefPtr<CefRequestHandler>	GetRequestHandler()		{ return (CefRequestHandler*)this; }
 	virtual CefRefPtr<CefDisplayHandler>	GetDisplayHandler()		{ return (CefDisplayHandler*)this; }
 	virtual CefRefPtr<CefKeyboardHandler>	GetKeyboardHandler()	{ return (CefKeyboardHandler*)this; }
-	virtual CefRefPtr<CefMenuHandler>		GetMenuHandler()		{ return (CefMenuHandler*)this; }
+	virtual CefRefPtr<CefContextMenuHandler>	GetMenuHandler()		{ return (CefContextMenuHandler*)this; }
 	virtual CefRefPtr<CefJSDialogHandler>	GetJSDialogHandler()	{ return (CefJSDialogHandler*)this; }
-	virtual CefRefPtr<CefJSBindingHandler>	GetJSBindingHandler()	{ return (CefJSBindingHandler*)this; }
-	virtual CefRefPtr<CefWinEventHandler>	GetWinEventHandler()	{ return (CefWinEventHandler*)this; }
+	// FIXME! virtual CefRefPtr<CefV8Handler>         GetJSBindingHandler()	{ return (CefV8Handler*)this; }
 
 private:
 	CefRefPtr<CefBrowser> m_Browser;

@@ -222,7 +222,7 @@ void JavaScriptObject::getKey(int index, char* buff, size_t buffsize)
 	m_pObject->GetKeys(keys);
 
 	if (index >= 0 && index < (int)keys.size())
-		mystrncpy_s(buff, buffsize, keys[index].c_str(), keys[index].size());
+		mystrncpy_s(buff, buffsize, keys[index].GetString().c_str(), keys[index].size());
 }
 
 int JavaScriptObject::getArrayLength()

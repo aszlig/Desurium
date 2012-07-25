@@ -32,7 +32,7 @@ void SchemeRequest::getURL(char *buff, size_t buffsize)
 	std::string url = m_rRequest->GetURL();
 
 	if (buff)
-		mystrncpy_s(buff, buffsize, url.c_str(), url.size());
+		mystrncpy_s(buff, buffsize, url.ToString().c_str(), url.size());
 }
 
 void SchemeRequest::setURL(const char* url)
@@ -46,7 +46,7 @@ void SchemeRequest::getMethod(char *buff, size_t buffsize)
 	std::string method = m_rRequest->GetMethod();
 
 	if (buff)
-		mystrncpy_s(buff, buffsize, method.c_str(), method.size());
+		mystrncpy_s(buff, buffsize, method.ToString().c_str(), method.size());
 }
 
 void SchemeRequest::setMethod(const char* method)
@@ -100,10 +100,10 @@ void SchemeRequest::getHeaderItem(size_t index, char *key, size_t keysize, char*
 		return;
 
 	if (key)
-		mystrncpy_s(key, keysize, (*it).first.c_str(), (*it).first.size());
+		mystrncpy_s(key, keysize, (*it).first.ToString().c_str(), (*it).first.size());
 
 	if (data)
-		mystrncpy_s(data, datasize, (*it).second.c_str(), (*it).second.size());
+		mystrncpy_s(data, datasize, (*it).second.ToString().c_str(), (*it).second.size());
 }
 
 void SchemeRequest::setHeaderItem(const char* key, const char* data)

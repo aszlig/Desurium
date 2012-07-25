@@ -11,7 +11,7 @@
 
 #include "MenuInfo.h"
 
-ChromiumMenuItem::ChromiumMenuItem(CefMenuHandler::MenuItem item)
+ChromiumMenuItem::ChromiumMenuItem(CefContextMenuHandler::MenuItem item)
 {
 	m_MenuItem = item;
 }
@@ -44,7 +44,7 @@ bool ChromiumMenuItem::isChecked()
 
 
 
-ChromiumMenuInfo::ChromiumMenuInfo(CefMenuHandler::MenuInfo info, MenuHandle_t hwnd)
+ChromiumMenuInfo::ChromiumMenuInfo(CefContextMenuHandler::MenuInfo info, MenuHandle_t hwnd)
 {
 	m_MenuInfo = info;
 	m_Hwnd = hwnd;
