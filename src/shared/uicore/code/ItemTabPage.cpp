@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "gcWebHost.h"
 #include "gcWebControl.h"
 
-#include "cef_desura_includes/ChromiumBrowserI.h"
+#include "ChromiumBrowserI.h"
 
 ::Thread::Mutex m_EventLock;
 std::map<gcString, ChromiumDLL::JSObjHandle> g_EventMap;

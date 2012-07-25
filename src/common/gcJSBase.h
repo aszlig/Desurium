@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #pragma once
 #endif
 
-#include "cef_desura_includes/ChromiumBrowserI.h"
+#include "ChromiumBrowserI.h"
 #include "Event.h"
 
 typedef ChromiumDLL::JSObjHandle JSObjHandle;

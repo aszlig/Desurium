@@ -1,5 +1,5 @@
 include_directories(
-    ${CEF_INCLUDE_DIRS}
+    ${CEFDESURA_INCLUDE_DIRS}
 )
 
 file (GLOB Sources gcJSBase.cpp)

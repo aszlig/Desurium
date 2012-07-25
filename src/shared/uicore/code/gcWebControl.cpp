@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "gcWebControl.h"
 
 #include "gcWCEvents.h"
-#include "cef_desura_includes/ChromiumBrowserI.h"
+#include "ChromiumBrowserI.h"
 
 #include "gcWebFakeBrowser.h"
 

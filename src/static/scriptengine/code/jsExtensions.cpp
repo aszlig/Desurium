@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
 #include "Common.h"
-#include "cef_desura_includes/ChromiumBrowserI.h"
+#include "ChromiumBrowserI.h"
 #include "v8.h"
 
 #include <vector>

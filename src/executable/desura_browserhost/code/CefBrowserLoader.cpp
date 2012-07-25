@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "Common.h"
 
 #define CEF_IGNORE_FUNCTIONS 1
-#include "cef_desura_includes/ChromiumBrowserI.h"
+#include "ChromiumBrowserI.h"
 
 #include "SharedObjectLoader.h"
 #include "CefSchemeBase.h"

@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <branding/branding.h>
 
 #ifndef DESURA_CLIENT
-	#include "cef_desura_includes/ChromiumBrowserI.h"
+	#include "ChromiumBrowserI.h"
 	#include "CefEvents.h"
 #else
 	#include "wx_controls/gcManagers.h"
