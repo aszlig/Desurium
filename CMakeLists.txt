@@ -121,6 +121,7 @@ endif()
 find_package(Sqlite ${REQUIRED_IF_OPTION})
 find_package(TinyXML ${REQUIRED_IF_OPTION})
 find_package(v8 ${REQUIRED_ON_UNIX})
+find_package(CEF ${REQUIRED_IF_OPTION})
 # we patch wxWidgets so we will build it on our own
 find_package(wxWidgets 2.9 COMPONENTS richtext ${REQUIRED_IF_OPTION})
 
@@ -231,7 +232,9 @@ if(NOT V8_FOUND)
   include(Buildv8)
 endif()
 
-include(BuildCEF)
+if(NOT CEF_FOUND)
+  include(BuildCEF)
+endif()
 
 ###############################################################################
 # build third_party
@@ -255,8 +258,6 @@ add_subdirectory(third_party/sqlite3x)
 if(NOT Boost_FOUND)
   add_dependencies(sqlite3x boost)
 endif()
-
-add_dependencies(cef wxWidget-2-9)
 
 ###############################################################################
 # build desura

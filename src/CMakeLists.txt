@@ -163,14 +163,14 @@ endforeach()
 # we need some dependencies 
 ###############################################################################
 
-add_dependencies(gcJSBase fetch_cef)
-add_dependencies(scriptengine fetch_cef)
-add_dependencies(servicecore fetch_cef)
-add_dependencies(uicore fetch_cef)
-add_dependencies(usercore fetch_cef)
-if(WIN32)
-  add_dependencies(utilcore fetch_cef)
-endif()
+#add_dependencies(gcJSBase fetch_cef)
+#add_dependencies(scriptengine fetch_cef)
+#add_dependencies(servicecore fetch_cef)
+#add_dependencies(uicore fetch_cef)
+#add_dependencies(usercore fetch_cef)
+#if(WIN32)
+#  add_dependencies(utilcore fetch_cef)
+#endif()
 
 #if(NOT wxWidgets_FOUND)
   add_dependencies(managers_window wxWidget-2-9)
